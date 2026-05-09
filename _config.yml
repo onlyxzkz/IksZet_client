@@ -1,0 +1,15 @@
+# GitHub Pages configuration
+# Disables Jekyll processing so the raw HTML/CSS/JS is served directly
+# This is needed because the project has non-Jekyll directories and files
+
+theme: null
+plugins: []
+exclude:
+  - "*.java"
+  - "*.gradle"
+  - "*.bat"
+  - "gradlew"
+  - "build/"
+  - "src/"
+  - "*.log"
+  - "*.txt"

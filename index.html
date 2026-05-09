@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IksZet — Premium Minecraft Client</title>
+  <meta name="description" content="IksZet is a premium, stealth-injected Minecraft client for 1.21.4 featuring advanced combat modules, customizable render ESP, and a sleek ImGui interface." />
+  <meta property="og:title" content="IksZet — Premium Minecraft Client" />
+  <meta property="og:description" content="Precision combat. Undetectable injection. Elite performance." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">
+        <span class="logo-bracket">[</span>IksZet<span class="logo-bracket">]</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#modules">Modules</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#tech">Technology</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a id="nav-cta" href="#access" class="btn-primary">Get Access</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">Minecraft 1.21.4 · Fabric · DLL Injection · ScreenShare Proof</div>
+      <h1 class="hero-title">
+        <span class="title-bracket">[</span>IksZet<span class="title-bracket">]</span>
+      </h1>
+      <p class="hero-sub">ScreenShare proof. Precision combat. Undetectable injection.</p>
+      <div class="hero-actions">
+        <a href="#access" class="btn-primary btn-lg">Request Access</a>
+        <a href="#features" class="btn-ghost btn-lg">Explore Features</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-val">19+</span><span class="stat-lbl">Modules</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-val">1.21.4</span><span class="stat-lbl">Minecraft</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-val">DLL</span><span class="stat-lbl">Injection</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-val">ImGui</span><span class="stat-lbl">Interface</span></div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURES ─── -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// why ikszet</span>
+        <h2>ScreenShare proof &amp; built to dominate</h2>
+        <p>Every module, every decision — engineered so you stay ahead. On the server and in the SS.</p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card" data-index="0">
+          
+          <h3>ScreenShare Proof</h3>
+          <p>IksZet leaves zero detectable traces on disk or in memory. No suspicious files, no flagged registry entries, no leftover strings. Passes thorough manual screenshares conducted by experienced staff.</p>
+          <ul class="feature-tags">
+            <li>No Disk Artifacts</li><li>Memory Wipe</li><li>Clean Registry</li><li>SS Tested</li>
+          </ul>
+        </div>
+
+        <div class="feature-card" data-index="1">
+          
+          <h3>Fast &amp; Dedicated Support</h3>
+          <p>Got an issue? Our support team responds fast — typically within minutes. Whether it's an injection problem, a config question, or a feature request, we've got you covered.</p>
+          <ul class="feature-tags">
+            <li>Quick Response</li><li>Private Discord</li><li>Direct DM Support</li><li>Active Dev</li>
+          </ul>
+        </div>
+
+        <div class="feature-card" data-index="2">
+          
+          <h3>Surgical Combat</h3>
+          <p>Frame-rate precision triggerbot with critical hit timing, shield breaking, and target-sync optimization — all working within attack cooldown windows.</p>
+          <ul class="feature-tags">
+            <li>Criticals</li><li>Shield Breaker</li><li>Target Sync</li><li>Instant Mode</li>
+          </ul>
+        </div>
+
+        <div class="feature-card" data-index="3">
+          
+          <h3>Stealth Injection</h3>
+          <p>Injects as a DLL directly into the JVM process. Hard self-destruct wipes the client from memory on demand, leaving zero forensic trace.</p>
+          <ul class="feature-tags">
+            <li>DLL Inject</li><li>Self-Destruct</li><li>AES Encryption</li><li>Obfuscated Bytecode</li>
+          </ul>
+        </div>
+
+        <div class="feature-card" data-index="4">
+          
+          <h3>HWID Licensing</h3>
+          <p>Access is locked to your hardware ID. No local key files that can be stolen or shared — your license is verified at injection time, machine-bound and secure.</p>
+          <ul class="feature-tags">
+            <li>HWID Lock</li><li>No Key Files</li><li>Machine-Bound</li><li>Invite Only</li>
+          </ul>
+        </div>
+
+        <div class="feature-card" data-index="5">
+          
+          <h3>ImGui Interface</h3>
+          <p>Draggable ClickGUI built with Dear ImGui. JetBrains Mono rendering, spring animations, compact module panels per category — all in-game overlay.</p>
+          <ul class="feature-tags">
+            <li>Dear ImGui</li><li>Draggable GUI</li><li>Spring Animations</li><li>In-game HUD</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GUI PREVIEW ─── -->
+  <section id="preview">
+    <div class="container preview-wrap">
+      <div class="preview-text">
+        <span class="section-tag">// interface</span>
+        <h2>Built for precision,<br/>designed to impress.</h2>
+        <p>The ClickGUI renders inside the Minecraft frame via ImGui — a floating, draggable panel listing every category. Each module expands into its settings inline.</p>
+        <ul class="check-list">
+          <li>JetBrains Mono font atlas, rendered via native ImGui</li>
+          <li>Pivot-accurate window dragging with spring momentum</li>
+          <li>HUD renders per-module debug status live</li>
+          <li>Keybind toggle per module</li>
+        </ul>
+      </div>
+      <div class="preview-image-wrap">
+        <img src="ssclient.png" alt="IksZet ClickGUI preview" class="preview-img" id="guiPreviewImg" />
+        <div class="preview-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MODULES ─── -->
+  <section id="modules">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// module list</span>
+        <h2>Every module. Every edge.</h2>
+        <p>Filter by category to explore what's inside.</p>
+      </div>
+
+      <div class="module-filter" id="moduleFilter">
+        <button class="filter-btn active" data-cat="all">All</button>
+        <button class="filter-btn" data-cat="COMBAT">Combat</button>
+        <button class="filter-btn" data-cat="MOVEMENT">Movement</button>
+        <button class="filter-btn" data-cat="RENDER">Render</button>
+        <button class="filter-btn" data-cat="PLAYER">Player</button>
+        <button class="filter-btn" data-cat="CLIENT">Client</button>
+      </div>
+
+      <div class="modules-grid" id="modulesGrid">
+
+        <!-- COMBAT -->
+        <div class="module-card" data-cat="COMBAT">
+          <div class="mod-cat-tag combat">COMBAT</div>
+          <h4>Triggerbot</h4>
+          <p>Attacks entities in crosshair automatically. Frame-rate precision via WorldRenderEvents. Configurable reach, criticals, and instant mode.</p>
+          <div class="mod-settings">
+            <span>Criticals</span><span>Shield Breaker</span><span>Target Sync</span><span>Through Walls</span><span>Reach</span>
+          </div>
+        </div>
+
+
+
+        <!-- MOVEMENT -->
+        <div class="module-card" data-cat="MOVEMENT">
+          <div class="mod-cat-tag movement">MOVEMENT</div>
+          <h4>Sprint</h4>
+          <p>Keeps you sprinting with anti-cheat safe conditions — no sprint while sneaking, using items, or hunger below 6. Optional Omni-MoveState.</p>
+          <div class="mod-settings">
+            <span>Omni MoveState</span>
+          </div>
+        </div>
+
+        <div class="module-card" data-cat="MOVEMENT">
+          <div class="mod-cat-tag movement">MOVEMENT</div>
+          <h4>MoveSpeed</h4>
+          <p>Increases horizontal movement velocity while preserving anti-cheat compatibility.</p>
+          <div class="mod-settings">
+            <span>Speed Multiplier</span>
+          </div>
+        </div>
+
+        <div class="module-card" data-cat="MOVEMENT">
+          <div class="mod-cat-tag movement">MOVEMENT</div>
+          <h4>BlockSpeed</h4>
+          <p>Speeds up block interaction timings to mine and place blocks faster than vanilla.</p>
+          <div class="mod-settings">
+            <span>Speed</span>
+          </div>
+        </div>
+
+        <!-- RENDER -->
+        <div class="module-card" data-cat="RENDER">
+          <div class="mod-cat-tag render">RENDER</div>
+          <h4>ESP</h4>
+          <p>Corner-bracket entity outlines with smooth interpolation. Two-pass rendering: wireframe first, gradient health bar quads second.</p>
+          <div class="mod-settings">
+            <span>Players</span><span>Mobs</span><span>Health Bar</span><span>Corners</span>
+          </div>
+        </div>
+
+        <div class="module-card" data-cat="RENDER">
+          <div class="mod-cat-tag render">RENDER</div>
+          <h4>Tracers</h4>
+          <p>Draws lines from screen center to all tracked entities for quick spatial awareness.</p>
+          <div class="mod-settings">
+            <span>Players</span><span>Mobs</span><span>Width</span>
+          </div>
+        </div>
+
+        <!-- PLAYER -->
+        <div class="module-card" data-cat="PLAYER">
+          <div class="mod-cat-tag player">PLAYER</div>
+          <h4>NoBreakDelay</h4>
+          <p>Removes the block-breaking delay between consecutive breaks using reflection on the mining progress tick.</p>
+          <div class="mod-settings">
+            <span>Enabled</span>
+          </div>
+        </div>
+
+        <div class="module-card" data-cat="PLAYER">
+          <div class="mod-cat-tag player">PLAYER</div>
+          <h4>NoJumpDelay</h4>
+          <p>Removes the jump cooldown, allowing instant consecutive jumps without server-side detection flags.</p>
+          <div class="mod-settings">
+            <span>Enabled</span>
+          </div>
+        </div>
+
+
+
+        <div class="module-card" data-cat="PLAYER">
+          <div class="mod-cat-tag player">PLAYER</div>
+          <h4>AirStuck</h4>
+          <p>Locks your Y position mid-air, allowing full horizontal movement while suspended.</p>
+          <div class="mod-settings">
+            <span>Enabled</span>
+          </div>
+        </div>
+
+        <div class="module-card" data-cat="PLAYER">
+          <div class="mod-cat-tag player">PLAYER</div>
+          <h4>InvMove</h4>
+          <p>Lets you move while inventory, chest, or any container screen is open.</p>
+          <div class="mod-settings">
+            <span>Enabled</span>
+          </div>
+        </div>
+
+        <!-- CLIENT -->
+        <div class="module-card" data-cat="CLIENT">
+          <div class="mod-cat-tag client-tag">CLIENT</div>
+          <h4>Self-Destruct</h4>
+          <p>One keybind triggers a full hard uninjection: the DLL unloads from the JVM, the class loader is purged, and all memory strings are wiped — leaving zero forensic trace. Essential before any screenshare.</p>
+          <div class="mod-settings">
+            <span>Instant Wipe</span><span>Memory Clean</span><span>DLL Unload</span>
+          </div>
+        </div>
+
+        <div class="module-card" data-cat="CLIENT">
+          <div class="mod-cat-tag client-tag">CLIENT</div>
+          <h4>HUD</h4>
+          <p>Renders an in-game array list of enabled modules with their live debug status. Positioned and styled via ImGui.</p>
+          <div class="mod-settings">
+            <span>Show Status</span>
+          </div>
+        </div>
+
+        <div class="module-card" data-cat="CLIENT">
+          <div class="mod-cat-tag client-tag">CLIENT</div>
+          <h4>ClickGUI</h4>
+          <p>The main ImGui overlay panel. Opens/closes with INSERT. Draggable per-category window with inline settings.</p>
+          <div class="mod-settings">
+            <span>Insert to Open</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRICING ─── -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// pricing</span>
+        <h2>Simple, transparent pricing</h2>
+        <p>No hidden fees. Pay once, use throughout your access period. All plans include every feature.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- 3 MONTHS -->
+        <div class="plan-card" id="plan-3mo">
+          <div class="plan-header">
+            <span class="plan-duration">3 Months</span>
+            <div class="plan-price">
+              <span class="plan-amount">30</span>
+              <span class="plan-currency">PLN</span>
+            </div>
+            <p class="plan-period">one-time payment</p>
+          </div>
+          <ul class="plan-features">
+            <li>
+              <span class="plan-check">✓</span>
+              Full feature access
+            </li>
+            <li>
+              <span class="plan-check">✓</span>
+              Standard support
+            </li>
+            <li>
+              <span class="plan-check">✓</span>
+              Updates included during active period
+            </li>
+            <li>
+              <span class="plan-check">✓</span>
+              HWID-locked license
+            </li>
+            <li>
+              <span class="plan-check">✓</span>
+              All modules unlocked
+            </li>
+          </ul>
+          <a href="https://discord.gg/J8xrskPCud" target="_blank" rel="noopener" class="btn-ghost plan-btn">Get 3 Months</a>
+        </div>
+
+        <!-- 12 MONTHS -->
+        <div class="plan-card plan-featured" id="plan-12mo">
+          <div class="plan-badge-popular">BEST VALUE</div>
+          <div class="plan-header">
+            <span class="plan-duration">12 Months</span>
+            <div class="plan-price">
+              <span class="plan-amount">70</span>
+              <span class="plan-currency">PLN</span>
+            </div>
+            <p class="plan-period">one-time payment · save ~58%</p>
+          </div>
+          <ul class="plan-features">
+            <li>
+              <span class="plan-check">✓</span>
+              Full feature access
+            </li>
+            <li>
+              <span class="plan-check plan-check--gold">✓</span>
+              <strong>Priority support</strong>
+            </li>
+            <li>
+              <span class="plan-check plan-check--gold">✓</span>
+              <strong>Continuous updates for 1 year</strong>
+            </li>
+            <li>
+              <span class="plan-check">✓</span>
+              HWID-locked license
+            </li>
+            <li>
+              <span class="plan-check">✓</span>
+              All modules unlocked
+            </li>
+          </ul>
+          <a href="https://discord.gg/J8xrskPCud" target="_blank" rel="noopener" class="btn-primary plan-btn">Get 12 Months</a>
+        </div>
+
+      </div>
+
+      <p class="pricing-note">Payment is handled manually via Discord. Contact us after joining to complete your purchase.</p>
+    </div>
+  </section>
+
+  <!-- ─── TECHNOLOGY ─── -->
+
+  <section id="tech">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// architecture</span>
+        <h2>Under the hood</h2>
+        <p>A layered injection pipeline designed for maximum stealth and stability.</p>
+      </div>
+      <div class="tech-flow">
+        <div class="tech-step">
+          <div class="tech-num">01</div>
+          <div class="tech-info">
+            <h4>DLL Injection</h4>
+            <p>A native C++ DLL is injected into the running JVM process, bootstrapping a custom class loader into the Minecraft runtime.</p>
+          </div>
+        </div>
+        <div class="tech-arrow">→</div>
+        <div class="tech-step">
+          <div class="tech-num">02</div>
+          <div class="tech-info">
+            <h4>HWID Auth</h4>
+            <p>Before initialization, the machine's hardware ID is verified against the whitelist. Unregistered machines are rejected instantly — no key files, no sharing.</p>
+          </div>
+        </div>
+        <div class="tech-arrow">→</div>
+        <div class="tech-step">
+          <div class="tech-num">03</div>
+          <div class="tech-info">
+            <h4>Fabric Mixin Layer</h4>
+            <p>Hooks into Minecraft 1.21.4 internals via Fabric's Mixin framework for packet interception, rendering, and input events — no ASM required.</p>
+          </div>
+        </div>
+        <div class="tech-arrow">→</div>
+        <div class="tech-step">
+          <div class="tech-num">04</div>
+          <div class="tech-info">
+            <h4>Self-Destruct</h4>
+            <p>One keybind triggers full DLL unload, class loader purge, and process memory wipe — leaving zero forensic trace in the JVM.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ─── -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// faq</span>
+        <h2>Frequently asked questions</h2>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item" id="faq-1">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-1">
+            What Minecraft version is supported?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" id="faq-a-1" role="region">
+            <p>IksZet is built for <strong>Minecraft 1.21.4</strong> running on the Fabric mod loader. Other versions are not officially supported at this time.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-2">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-2">
+            How does the licensing system work?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" id="faq-a-2" role="region">
+            <p>Access is tied to your hardware ID (HWID) and verified via safe methods backend at injection time. There are no key files to steal or share — your license lives server-side.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-3">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-3">
+            Is the client ScreenShare proof?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" id="faq-a-3" role="region">
+            <p>Yes. IksZet is designed to be fully ScreenShare proof. The client leaves no suspicious files on disk, no detectable entries in the Windows registry, and no lingering strings in memory. The built-in Self-Destruct feature lets you wipe the client from the JVM instantly before a screenshare begins. IksZet has been tested against thorough manual screenshares by experienced anti-cheat staff and passes cleanly.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-4">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-4">
+            How do I open the ClickGUI in-game?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" id="faq-a-4" role="region">
+            <p>Press <code>Right Shift</code> to toggle the ImGui ClickGUI overlay. Individual modules can also be bound to keyboard keys for quick toggling without opening the menu.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-5">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-5">
+            What is the Self-Destruct feature?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" id="faq-a-5" role="region">
+            <p>A single keybind triggers hard uninjection: the DLL unloads itself from the process, the custom class loader is purged, and all memory strings are wiped — leaving no forensic trace in the running JVM.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ACCESS CTA ─── -->
+  <section id="access">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-glow"></div>
+        <span class="section-tag">// get started</span>
+        <h2>Ready to gain the edge?</h2>
+        <p>IksZet is invite-only. Access is granted through our private Discord server after HWID verification.</p>
+        <a href="https://discord.gg/J8xrskPCud" id="discordBtn" class="btn-primary btn-lg btn-discord" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px;vertical-align:middle"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+          Join Discord
+        </a>
+        <p class="cta-note">Invites are reviewed manually. Reselling or sharing is strictly prohibited.</p>
+        <p class="cta-dm-note">Link not working? DM directly on Discord: <a href="https://discord.com/users/786534578210603008" target="_blank" rel="noopener" class="cta-dm-link">@owner</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container footer-inner">
+      <span class="footer-logo"><span class="logo-bracket">[</span>IksZet<span class="logo-bracket">]</span></span>
+      <p class="footer-note">For Players - By Player. Use responsibly. Not affiliated with Mojang Studios.</p>
+      <p class="footer-copy">&copy; 2026 IksZet. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
