@@ -6,13 +6,11 @@
   <title>IksZet Client</title>
   <meta name="description" content="Screenshare Proof .dll minecraft client" />
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <!-- Modern Monospace & Tech Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -26,6 +24,25 @@
       --text-dim: #3f3f46;
       --accent: #ffffff;
       --radius: 12px;
+
+      --ig-win-bg: rgba(20, 20, 31, 0.96);
+      --ig-child-bg: #101018;
+      --ig-border: #33334d;
+      --ig-title-bg: #1a1a26;
+      --ig-title-active: #262633;
+      --ig-frame-bg: #262633;
+      --ig-frame-hover: #404059;
+      --ig-frame-active: #4d4d66;
+      --ig-button: rgba(102, 89, 230, 0.85);
+      --ig-button-hover: #8073ff;
+      --ig-button-active: #998cff;
+      --ig-selected: #6659e6;
+      --ig-hover: #2e2e42;
+      --ig-text: #e2e2e8;
+      --ig-text-disabled: #7e7e90;
+      --ig-link: #6680ff;
+      --ig-separator: #2a2a3e;
+      --ig-tree: #9999cc;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,7 +56,6 @@
       overflow-x: hidden;
     }
 
-    /* GRID BACKGROUND PATTERN */
     .bg-grid {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -49,7 +65,6 @@
       pointer-events: none;
     }
 
-    /* CONTINUOUS SCROLL SCALE ANIMATIONS */
     .scroll-scale-up {
       transform: scale(0.85);
       opacity: 0;
@@ -70,7 +85,6 @@
       opacity: 1;
     }
 
-    /* UTILITIES */
     .container { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
     .mono { font-family: 'JetBrains Mono', monospace; }
 
@@ -87,7 +101,6 @@
       transform: translateY(-4px);
     }
 
-    /* BUTTONS */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem;
       padding: 0.9rem 2rem; border-radius: 8px; font-weight: 700;
@@ -107,7 +120,20 @@
       background: #ffffff; color: #000000; border-color: #ffffff;
     }
 
-    /* HEADER */
+    .btn-preview {
+      background: linear-gradient(135deg, #372e82 0%, #1c1842 100%);
+      color: #c4beff;
+      border: 1px solid #6659e6;
+      box-shadow: 0 0 20px rgba(102, 89, 230, 0.25);
+    }
+    .btn-preview:hover {
+      background: linear-gradient(135deg, #4f42b8 0%, #29235e 100%);
+      color: #ffffff;
+      border-color: #8b7eff;
+      box-shadow: 0 0 28px rgba(102, 89, 230, 0.5);
+      transform: translateY(-2px);
+    }
+
     header {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
       background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
@@ -120,7 +146,6 @@
     nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.2s; text-transform: uppercase; letter-spacing: 1px; }
     nav a:hover { color: #ffffff; }
 
-    /* HERO */
     .hero {
       min-height: 100vh; display: flex; flex-direction: column;
       justify-content: center; align-items: center; text-align: center;
@@ -135,21 +160,52 @@
     .hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -1px; margin-bottom: 1.5rem; }
     .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 650px; margin-bottom: 2.5rem; }
 
-    /* IMAGE CONTAINER */
     .preview-box {
       width: 100%; max-width: 950px; border-radius: var(--radius);
       border: 1px solid var(--border-bright); overflow: hidden; margin-top: 3rem;
       background: #000;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .preview-box:hover {
+      border-color: #6659e6;
+      transform: translateY(-4px);
+      box-shadow: 0 16px 45px rgba(102, 89, 230, 0.28);
+    }
+    .preview-overlay-hint {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(20, 20, 31, 0.90);
+      backdrop-filter: blur(8px);
+      border: 1px solid #6659e6;
+      color: #c4beff;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 10;
+      pointer-events: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+    .preview-box:hover .preview-overlay-hint {
+      background: #6659e6;
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(102, 89, 230, 0.6);
+    }
+
     .preview-box img { width: 100%; display: block; filter: grayscale(20%) contrast(110%); }
 
-    /* STATS STRIP */
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; }
     .stat-card { text-align: center; padding: 2rem; }
     .stat-num { font-size: 2.5rem; font-weight: 700; color: #fff; }
     .stat-lbl { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
 
-    /* FEATURES */
     .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
     .feature-icon {
       width: 48px; height: 48px; border-radius: 8px; background: #18181b;
@@ -157,7 +213,6 @@
       justify-content: center; font-size: 1.25rem; color: #ffffff; margin-bottom: 1.5rem;
     }
 
-    /* MODULES */
     .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
     .mod-card {
       background: var(--card-bg); border: 1px solid var(--border); padding: 1.5rem;
@@ -166,7 +221,19 @@
     .mod-card:hover { border-color: #ffffff; transform: translateY(-2px); }
     .mod-cat { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
 
-    /* PRICING */
+    .ig-wip-badge {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      margin-left: 6px;
+    }
+
     .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; }
     .price-card { text-align: center; }
     .price-card.highlight { border-color: #ffffff; background: #0e0e11; }
@@ -176,10 +243,8 @@
     .price-features li { padding: 0.75rem 0; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 0.95rem; }
     .price-features i { color: #ffffff; margin-right: 0.75rem; }
 
-    /* FAQ */
     .faq-list { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
 
-    /* CTA */
     .cta-box {
       text-align: center; padding: 5rem 2rem; background: var(--card-bg);
       border: 1px solid var(--border-bright); border-radius: var(--radius); margin-bottom: 4rem;
@@ -191,13 +256,435 @@
       nav { display: none; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
+
+    #gui-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 9000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #gui-overlay.open { opacity: 1; pointer-events: all; }
+
+    .ig-notice-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(18, 18, 28, 0.94);
+      border: 1px solid rgba(102, 89, 230, 0.45);
+      border-radius: 8px;
+      padding: 8px 18px;
+      color: #c4beff;
+      font-size: 12px;
+      text-align: center;
+      max-width: 850px;
+      width: 95vw;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .ig-notice-banner strong {
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+    .ig-notice-banner i {
+      color: #8073ff;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    #imgui-window {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ig-text);
+      background: var(--ig-win-bg);
+      border: 1px solid var(--ig-border);
+      border-radius: 10px;
+      width: 850px;
+      max-width: 95vw;
+      height: 560px;
+      max-height: 82vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      user-select: none;
+      overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #gui-overlay.open #imgui-window { transform: scale(1); }
+
+    #imgui-titlebar {
+      background: var(--ig-title-active);
+      padding: 7px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--ig-border);
+      cursor: move;
+      flex-shrink: 0;
+    }
+    .ig-title-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ig-title-sub {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ig-text-disabled);
+    }
+    #imgui-close {
+      width: 18px; height: 18px;
+      background: #bd3a3a;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #ffffff;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    #imgui-close:hover { background: #e04444; }
+
+    #imgui-header {
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(20, 20, 31, 0.7);
+      border-bottom: 1px solid var(--ig-separator);
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    .ig-label { color: var(--ig-text-disabled); font-size: 13px; font-weight: 700; }
+    .ig-input {
+      background: var(--ig-frame-bg);
+      border: 1px solid var(--ig-border);
+      border-radius: 6px;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
+      padding: 4px 8px;
+      width: 200px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .ig-input:focus { border-color: var(--ig-selected); }
+    .ig-btn {
+      background: var(--ig-button);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .ig-btn:hover { background: var(--ig-button-hover); }
+    .ig-btn:active { background: var(--ig-button-active); transform: scale(0.98); }
+    .ig-link {
+      color: var(--ig-link);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: all 0.15s;
+      text-decoration: underline;
+    }
+    .ig-link:hover {
+      background: rgba(102, 128, 255, 0.15);
+      color: #99b3ff;
+    }
+    .ig-spacer { flex: 1; }
+
+    #imgui-body {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      padding: 10px;
+      gap: 10px;
+    }
+
+    #ig-categories {
+      width: 150px;
+      flex-shrink: 0;
+      border: 1px solid var(--ig-border);
+      border-radius: 8px;
+      background: var(--ig-child-bg);
+      overflow-y: auto;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .ig-cat-item {
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ig-text-disabled);
+      white-space: nowrap;
+      transition: all 0.1s;
+    }
+    .ig-cat-item:hover { background: var(--ig-hover); color: #ffffff; }
+    .ig-cat-item.active { background: var(--ig-selected); color: #ffffff; }
+    .ig-cat-sep {
+      height: 1px;
+      background: var(--ig-separator);
+      margin: 6px 0;
+      margin-top: auto;
+    }
+    .ig-cat-debug {
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      color: #9999ff;
+      transition: all 0.1s;
+    }
+    .ig-cat-debug:hover { background: var(--ig-hover); color: #ffffff; }
+    .ig-cat-debug.active { background: var(--ig-selected); color: #ffffff; }
+
+    #ig-modules {
+      flex: 1;
+      border: 1px solid var(--ig-border);
+      border-radius: 8px;
+      background: var(--ig-child-bg);
+      overflow-y: auto;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ig-mod-row {
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--ig-separator);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .ig-mod-row:last-child { border-bottom: none; }
+    .ig-mod-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ig-check-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .ig-check-box {
+      width: 16px; height: 16px;
+      background: var(--ig-frame-bg);
+      border: 1px solid var(--ig-border);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.12s;
+      flex-shrink: 0;
+    }
+    .ig-check-box:hover { border-color: var(--ig-button-hover); }
+    .ig-check-box.checked {
+      background: var(--ig-selected);
+      border-color: #8073ff;
+    }
+    .ig-check-box.checked::after {
+      content: '✓';
+      font-size: 11px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .ig-mod-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ig-text);
+      cursor: pointer;
+    }
+    .ig-mod-label.disabled { color: var(--ig-text-disabled); font-weight: 500; }
+
+    .ig-bind-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      background: var(--ig-frame-bg);
+      border: 1px solid var(--ig-border);
+      border-radius: 4px;
+      color: #a0a0c0;
+      margin-left: 4px;
+      cursor: pointer;
+    }
+    .ig-bind-badge:hover {
+      background: var(--ig-button);
+      color: #fff;
+    }
+
+    .ig-tree-btn {
+      color: var(--ig-tree);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+      transition: background 0.1s;
+    }
+    .ig-tree-btn:hover { background: var(--ig-hover); color: #ffffff; }
+
+    .ig-settings-box {
+      margin-left: 20px;
+      padding-left: 10px;
+      border-left: 2px solid rgba(102, 89, 230, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 4px;
+    }
+    .ig-settings-box.hidden { display: none; }
+
+    .ig-slider-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ig-slider-track {
+      width: 170px;
+      height: 18px;
+      background: var(--ig-frame-bg);
+      border: 1px solid var(--ig-border);
+      border-radius: 4px;
+      position: relative;
+      cursor: ew-resize;
+      overflow: hidden;
+    }
+    .ig-slider-track:hover { border-color: var(--ig-button-hover); }
+    .ig-slider-fill {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      background: var(--ig-button);
+      pointer-events: none;
+    }
+    .ig-slider-val {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: #ffffff;
+      pointer-events: none;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
+    .ig-slider-name {
+      font-size: 12px;
+      color: var(--ig-text);
+    }
+
+    .ig-combo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ig-select {
+      background: var(--ig-frame-bg);
+      border: 1px solid var(--ig-border);
+      border-radius: 4px;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 8px;
+      outline: none;
+      cursor: pointer;
+      width: 140px;
+    }
+    .ig-select:focus { border-color: var(--ig-selected); }
+    .ig-select option { background: #1a1a26; color: #ffffff; }
+    .ig-combo-name { font-size: 12px; color: var(--ig-text); }
+
+    #ig-bind-modal {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: #181824;
+      border: 1px solid #4a4a68;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 280px;
+      text-align: center;
+    }
+    #ig-bind-modal.show { display: flex; }
+    .ig-bind-title { font-size: 13px; font-weight: 700; color: #ffffff; }
+    .ig-bind-hint { font-size: 11px; color: #8888aa; }
+    .ig-bind-btns { display: flex; justify-content: center; gap: 8px; }
+
+    .ig-debug-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 100%;
+    }
+    .ig-debug-heading {
+      color: #8888ff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .ig-log-box {
+      flex: 1;
+      background: #09090e;
+      border: 1px solid var(--ig-border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 11px;
+      line-height: 1.6;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .log-ok { color: #4ade80; }
+    .log-err { color: #f87171; }
+    .log-info { color: #d1d5db; }
+    .log-dbg { color: #94a3b8; }
+
+    #ig-categories::-webkit-scrollbar,
+    #ig-modules::-webkit-scrollbar,
+    .ig-log-box::-webkit-scrollbar { width: 6px; }
+    #ig-categories::-webkit-scrollbar-track,
+    #ig-modules::-webkit-scrollbar-track,
+    .ig-log-box::-webkit-scrollbar-track { background: #0c0c12; }
+    #ig-categories::-webkit-scrollbar-thumb,
+    #ig-modules::-webkit-scrollbar-thumb,
+    .ig-log-box::-webkit-scrollbar-thumb { background: #33334d; border-radius: 3px; }
   </style>
 </head>
 <body>
 
   <div class="bg-grid"></div>
 
-  <!-- HEADER -->
   <header>
     <div class="nav-inner">
       <a href="#" class="logo mono">IKSZET</a>
@@ -211,29 +698,30 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="container hero">
     <div class="scroll-scale-down">
       <div class="tag mono"><i class="fa-solid fa-code"></i> MINECRAFT 1.21.4 — FABRIC</div>
       <h1>.DLL Injection.<br>ZERO TRACES.</h1>
       <p>IksZet is a high-performance C++ client featuring hard self-destruction, native ImGui interface, and surgical combat modules.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center;">
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
         <a href="#pricing" class="btn btn-solid">Get Access</a>
         <a href="#features" class="btn btn-outline">Explore Client</a>
+        <button id="open-gui-btn" class="btn btn-preview" onclick="openGuiPreview()">
+          <i class="fa-solid fa-window-maximize"></i> Preview GUI
+        </button>
       </div>
     </div>
 
-    <!-- CLIENT SCREENSHOT -->
-    <div class="preview-box scroll-scale-up">
+    <div class="preview-box scroll-scale-up" onclick="openGuiPreview()" title="Click to launch interactive GUI preview">
+      <div class="preview-overlay-hint mono"><i class="fa-solid fa-arrow-pointer"></i> Click to preview interactive GUI</div>
       <img src="ssclient.png" alt="IksZet GUI Screenshot" />
     </div>
   </section>
 
-  <!-- STATS -->
   <div class="container">
     <div class="stats-grid">
       <div class="card stat-card scroll-scale-up">
-        <div class="stat-num mono">19+</div>
+        <div class="stat-num mono">18+</div>
         <div class="stat-lbl">Modules</div>
       </div>
       <div class="card stat-card scroll-scale-up" style="transition-delay: 0.1s;">
@@ -241,7 +729,7 @@
         <div class="stat-lbl">Version</div>
       </div>
       <div class="card stat-card scroll-scale-up" style="transition-delay: 0.2s;">
-        <div class="stat-num mono">C++</div>
+        <div class="stat-num mono">C++ / JVM</div>
         <div class="stat-lbl">Engine</div>
       </div>
       <div class="card stat-card scroll-scale-up" style="transition-delay: 0.3s;">
@@ -251,7 +739,6 @@
     </div>
   </div>
 
-  <!-- FEATURES -->
   <section id="features" class="container">
     <div style="text-align: center; margin-bottom: 4rem;" class="scroll-scale-down">
       <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">HARDENED ARCHITECTURE</h2>
@@ -277,19 +764,19 @@
         <p style="color: var(--text-muted); font-size: 0.95rem;">Precise triggerbot with critical-hit timing, shield breaking, and vanilla-compliant reach parameters.</p>
       </div>
 
-      <div class="card scroll-scale-up">
+      <div class="card scroll-scale-up" style="transition-delay: 0.1s;">
         <div class="feature-icon"><i class="fa-solid fa-window-maximize"></i></div>
         <h3 style="margin-bottom: 0.75rem;">ImGui Interface</h3>
         <p style="color: var(--text-muted); font-size: 0.95rem;">Clean, draggable ClickGUI rendered in-game with Dear ImGui, JetBrains Mono font support, and an active HUD overlay.</p>
       </div>
 
-      <div class="card scroll-scale-up" style="transition-delay: 0.1s;">
+      <div class="card scroll-scale-up" style="transition-delay: 0.2s;">
         <div class="feature-icon"><i class="fa-solid fa-key"></i></div>
         <h3 style="margin-bottom: 0.75rem;">HWID Security</h3>
         <p style="color: var(--text-muted); font-size: 0.95rem;">License is cryptographically tied to your hardware ID. No local key files stored on your drive.</p>
       </div>
 
-      <div class="card scroll-scale-up" style="transition-delay: 0.2s;">
+      <div class="card scroll-scale-up" style="transition-delay: 0.3s;">
         <div class="feature-icon"><i class="fa-solid fa-comments"></i></div>
         <h3 style="margin-bottom: 0.75rem;">Direct Support</h3>
         <p style="color: var(--text-muted); font-size: 0.95rem;">Fast support via our private Discord server for setup assistance, updates, and custom configs.</p>
@@ -297,58 +784,81 @@
     </div>
   </section>
 
-  <!-- MODULES -->
   <section id="modules" class="container">
     <div style="text-align: center; margin-bottom: 4rem;" class="scroll-scale-down">
       <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">MODULE SUITE</h2>
-      <p style="color: var(--text-muted);">Fully customizable settings for competitive play.</p>
+      <p style="color: var(--text-muted);">Real in-game modules and customizable settings for competitive play.</p>
     </div>
 
     <div class="mod-grid">
       <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Combat</div>
-        <h4 style="margin-bottom: 0.3rem;">Triggerbot</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Frame-rate target attack with crit sync, shield breaker, and reach options.</p>
+        <h4 style="margin-bottom: 0.3rem;">TriggerBot</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Frame-rate attack raytrace with shield break, critical timing, target sync, and reach parameters.</p>
       </div>
+
+      <div class="mod-card scroll-scale-up">
+        <div class="mod-cat mono">Combat</div>
+        <h4 style="margin-bottom: 0.3rem;">AimAssist</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Smooth yaw/pitch rotation assistance with dynamic easing, FOV distance threshold, and target filtering.</p>
+      </div>
+
+      <div class="mod-card scroll-scale-up">
+        <div class="mod-cat mono">Combat</div>
+        <h4 style="margin-bottom: 0.3rem;">Backtrack</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Inbound movement packet lag buffer with real-time 3D ghost box visualization.</p>
+      </div>
+
+      <div class="mod-card scroll-scale-up">
+        <div class="mod-cat mono">Combat</div>
+        <h4 style="margin-bottom: 0.3rem;">FakeLag</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Cancels sending movement packets dynamically to simulate network lag and delay player position updates.</p>
+      </div>
+
       <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Movement</div>
-        <h4 style="margin-bottom: 0.3rem;">Omni-Sprint</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Maintains sprint safely without flagging while sneaking or consuming items.</p>
+        <h4 style="margin-bottom: 0.3rem;">Sprint</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Legit sprint keeper with strict anti-cheat bypasses and optional omni-directional mode.</p>
       </div>
+
       <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Movement</div>
-        <h4 style="margin-bottom: 0.3rem;">MoveSpeed</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Smooth horizontal velocity multiplier designed for strict anti-cheats.</p>
+        <h4 style="margin-bottom: 0.3rem;">InventoryMove</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Full WASD and jump movement control while interacting with containers and inventory screens.</p>
       </div>
+
       <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Render</div>
-        <h4 style="margin-bottom: 0.3rem;">ESP & Tracers</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Corner-bracket entity outlines with health bar display and directional lines.</p>
+        <h4 style="margin-bottom: 0.3rem;">ESP</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Corner-bracket entity wireframes with multi-colored health bars and player/mob filters.</p>
       </div>
+
+      <div class="mod-card scroll-scale-up">
+        <div class="mod-cat mono">Render</div>
+        <h4 style="margin-bottom: 0.3rem;">Freecam</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">True noclip ghost camera entity allowing free spectator exploration without packet desync.</p>
+      </div>
+
       <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Player</div>
-        <h4 style="margin-bottom: 0.3rem;">NoBreakDelay</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Removes block-breaking delay via tick reflection.</p>
+        <h4 style="margin-bottom: 0.3rem;">NoPush</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Prevents entity & water pushing collisions while enabling pearl phasing through solid blocks.</p>
       </div>
+
       <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Player</div>
-        <h4 style="margin-bottom: 0.3rem;">AirStuck</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Locks vertical position mid-air while keeping horizontal control.</p>
+        <h4 style="margin-bottom: 0.3rem;">InvClicker</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">High-speed UI-level container item spam clicker with instant Shift quick-move support.</p>
       </div>
-      <div class="mod-card scroll-scale-up">
-        <div class="mod-cat mono">Player</div>
-        <h4 style="margin-bottom: 0.3rem;">InvMove</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Move freely while keeping inventory or container screens open.</p>
-      </div>
+
       <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Client</div>
-        <h4 style="margin-bottom: 0.3rem;">Self-Destruct</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Instantly unloads DLL, purges memory strings, and clears class loader.</p>
+        <h4 style="margin-bottom: 0.3rem;">SelfDestruct</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Instantly wipes native memory, unhooks packet handlers, purges class loaders, and deletes JVM traces.</p>
       </div>
     </div>
   </section>
 
-  <!-- PRICING -->
   <section id="pricing" class="container">
     <div style="text-align: center; margin-bottom: 4rem;" class="scroll-scale-down">
       <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">ACCESS TIERS</h2>
@@ -356,12 +866,12 @@
     </div>
 
     <div class="pricing-grid">
-      <!-- 3 Months -->
+      
       <div class="card price-card scroll-scale-up">
         <h3 style="color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px;" class="mono">3 MONTHS</h3>
         <div class="price-amount mono">30 <span>PLN</span></div>
         <ul class="price-features">
-          <li><i class="fa-solid fa-check"></i> Complete 19+ Module Suite</li>
+          <li><i class="fa-solid fa-check"></i> Complete 18+ Module Suite</li>
           <li><i class="fa-solid fa-check"></i> Standard Discord Support</li>
           <li><i class="fa-solid fa-check"></i> Active Software Updates</li>
           <li><i class="fa-solid fa-check"></i> HWID License Locking</li>
@@ -369,13 +879,12 @@
         <a href="https://discord.gg/J8xrskPCud" target="_blank" class="btn btn-outline" style="width: 100%;">Order Access</a>
       </div>
 
-      <!-- 12 Months -->
       <div class="card price-card highlight scroll-scale-up" style="transition-delay: 0.15s;">
         <div class="mono" style="font-size: 0.75rem; color: #fff; letter-spacing: 1.5px;">[ BEST VALUE — SAVE 58% ]</div>
         <h3 style="color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px; margin-top: 0.5rem;" class="mono">12 MONTHS</h3>
         <div class="price-amount mono">70 <span>PLN</span></div>
         <ul class="price-features">
-          <li><i class="fa-solid fa-check"></i> Complete 19+ Module Suite</li>
+          <li><i class="fa-solid fa-check"></i> Complete 18+ Module Suite</li>
           <li><i class="fa-solid fa-check"></i> <strong>Priority Technical Support</strong></li>
           <li><i class="fa-solid fa-check"></i> <strong>1 Full Year of Updates</strong></li>
           <li><i class="fa-solid fa-check"></i> HWID License Locking</li>
@@ -385,7 +894,6 @@
     </div>
   </section>
 
-  <!-- FAQ -->
   <section id="faq" class="container">
     <div style="text-align: center; margin-bottom: 4rem;" class="scroll-scale-down">
       <h2 style="font-size: 2.5rem;">FREQUENTLY ASKED</h2>
@@ -409,7 +917,6 @@
     </div>
   </section>
 
-  <!-- CTA -->
   <div class="container">
     <div class="cta-box scroll-scale-up">
       <h2 style="font-size: 2.2rem; margin-bottom: 1rem;">JOIN THE DISCORD</h2>
@@ -426,7 +933,64 @@
     <p style="margin-top: 0.5rem; opacity: 0.4;">&copy; 2026 IksZet. All rights reserved.</p>
   </footer>
 
-  <!-- CONTINUOUS SCROLL ANIMATION SCRIPT -->
+  <div id="gui-overlay" onclick="handleOverlayClick(event)">
+
+    <div class="ig-notice-banner mono">
+      <i class="fa-solid fa-circle-info"></i>
+      <span><strong>Interactive Web Demonstration:</strong> This GUI is a close simulation of the native in-game Dear ImGui interface. Minor visual differences may occur due to web browser rendering limitations.</span>
+    </div>
+
+    <div id="imgui-window" style="position: relative;">
+
+      <div id="imgui-titlebar">
+        <div class="ig-title-text">
+          <span>xzkz_ private</span>
+          <span class="ig-title-sub">— ImGui ClickGUI [Fabric 1.21.4]</span>
+        </div>
+        <button id="imgui-close" onclick="closeGuiPreview()" title="Close GUI (ESC)">✕</button>
+      </div>
+
+      <div id="imgui-header">
+        <span class="ig-label">Search:</span>
+        <input class="ig-input" id="ig-search" type="text" placeholder="##search" oninput="filterModules(this.value)" />
+        
+        <div class="ig-spacer"></div>
+
+        <button class="ig-btn" onclick="repairUIFeedback(this)">Repair UI</button>
+        <span class="ig-link" onclick="window.open('https://guns.lol/xzkz_','_blank')">Click me</span>
+      </div>
+
+      <div id="imgui-body">
+
+        <div id="ig-categories">
+          <div class="ig-cat-item active" data-cat="COMBAT"   onclick="selectCat(this)">COMBAT</div>
+          <div class="ig-cat-item"        data-cat="MOVEMENT" onclick="selectCat(this)">MOVEMENT</div>
+          <div class="ig-cat-item"        data-cat="RENDER"   onclick="selectCat(this)">RENDER</div>
+          <div class="ig-cat-item"        data-cat="PLAYER"   onclick="selectCat(this)">PLAYER</div>
+          <div class="ig-cat-item"        data-cat="WORLD"    onclick="selectCat(this)">WORLD</div>
+          <div class="ig-cat-item"        data-cat="BLOCKS"   onclick="selectCat(this)">BLOCKS</div>
+          <div class="ig-cat-item"        data-cat="CLIENT"   onclick="selectCat(this)">CLIENT</div>
+          
+          <div class="ig-cat-sep"></div>
+          <div class="ig-cat-debug" data-cat="DEBUG" onclick="selectCat(this)">&gt;_ DEBUG</div>
+        </div>
+
+        <div id="ig-modules"></div>
+
+      </div>
+
+      <div id="ig-bind-modal">
+        <div class="ig-bind-title" id="ig-bind-title">Press any key to bind Module...</div>
+        <div class="ig-bind-hint">Press any keyboard key or choose an option:</div>
+        <div class="ig-bind-btns">
+          <button class="ig-btn" onclick="unbindActiveModule()">Unbind</button>
+          <button class="ig-btn" style="background:#4a4a58;" onclick="closeBindModal()">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const observerOptions = {
@@ -448,6 +1012,642 @@
       const elementsToAnimate = document.querySelectorAll('.scroll-scale-up, .scroll-scale-down');
       elementsToAnimate.forEach(el => observer.observe(el));
     });
+  </script>
+
+  <script>
+  
+  const MODULES = [
+    
+    {
+      id: "triggerbot",
+      name: "TriggerBot",
+      desc: "Automatically attacks entities in crosshair (Unleashed Reach)",
+      cat: "COMBAT",
+      enabled: false,
+      key: "Z",
+      settings: [
+        { type: "bool",   name: "Criticals", val: true },
+        { type: "bool",   name: "Shield Breaker", val: true },
+        { type: "bool",   name: "Target Sync", val: true },
+        { type: "bool",   name: "Fast Mode (No Cooldown)", val: false },
+        { type: "bool",   name: "Instant Mode (Frame-rate)", val: true },
+        { type: "bool",   name: "Through Walls", val: false },
+        { type: "slider", name: "Reach", val: 3.0, min: 3.0, max: 6.0, step: 0.1 }
+      ]
+    },
+    {
+      id: "aimassist",
+      name: "AimAssist",
+      desc: "Gives you assistance on your aim",
+      cat: "COMBAT",
+      enabled: false,
+      wip: true,
+      key: "",
+      settings: [
+        { type: "slider", name: "Max Yaw Speed", val: 2.0, min: 0.1, max: 5.0, step: 0.1 },
+        { type: "slider", name: "Min Yaw Speed", val: 2.0, min: 0.1, max: 5.0, step: 0.1 },
+        { type: "slider", name: "Max Pitch Speed", val: 2.0, min: 0.1, max: 5.0, step: 0.1 },
+        { type: "slider", name: "Min Pitch Speed", val: 2.0, min: 0.1, max: 5.0, step: 0.1 },
+        { type: "slider", name: "FOV", val: 90.0, min: 10.0, max: 180.0, step: 1.0 },
+        { type: "slider", name: "Range", val: 4.5, min: 1.0, max: 10.0, step: 0.1 },
+        { type: "slider", name: "Smoothing", val: 10.0, min: 1.0, max: 20.0, step: 0.5 },
+        { type: "slider", name: "Pitch Threshold", val: 60.0, min: 0.0, max: 90.0, step: 1.0 },
+        { type: "bool",   name: "Target Players", val: true },
+        { type: "bool",   name: "Target Mobs", val: false },
+        { type: "bool",   name: "Weapons Only", val: false },
+        { type: "bool",   name: "Through Walls", val: false },
+        { type: "bool",   name: "Disable on target", val: false },
+        { type: "bool",   name: "Ignore Blocks", val: true }
+      ]
+    },
+    {
+      id: "backtrack",
+      name: "Backtrack",
+      desc: "LiquidBounce-style Incoming Blink",
+      cat: "COMBAT",
+      enabled: false,
+      wip: true,
+      key: "",
+      settings: [
+        { type: "slider", name: "Max Delay", val: 400, min: 50, max: 1000, step: 50 },
+        { type: "slider", name: "Range", val: 6.0, min: 3.0, max: 12.0, step: 0.5 },
+        { type: "bool",   name: "Render Ghost", val: true }
+      ]
+    },
+    {
+      id: "fakelag",
+      name: "FakeLag",
+      desc: "Cancels sending motion packets to simulate lag/blink",
+      cat: "COMBAT",
+      enabled: false,
+      wip: true,
+      key: "",
+      settings: []
+    },
+
+    {
+      id: "sprint",
+      name: "Sprint",
+      desc: "Keeps you sprinting (AC safe)",
+      cat: "MOVEMENT",
+      enabled: true,
+      key: "",
+      settings: [
+        { type: "bool", name: "Omni MoveState", val: false }
+      ]
+    },
+    {
+      id: "inventorymove",
+      name: "InventoryMove",
+      desc: "Allows moving while in inventory",
+      cat: "MOVEMENT",
+      enabled: true,
+      key: "",
+      settings: []
+    },
+    {
+      id: "nojumpdelay",
+      name: "NoJumpDelay",
+      desc: "Removes jump cooldown",
+      cat: "MOVEMENT",
+      enabled: true,
+      key: "",
+      settings: []
+    },
+    {
+      id: "airstuck",
+      name: "AirStuck",
+      desc: "Freeze yourself in mid-air",
+      cat: "MOVEMENT",
+      enabled: false,
+      key: "X",
+      settings: []
+    },
+
+    {
+      id: "esp",
+      name: "ESP",
+      desc: "See entities through walls",
+      cat: "RENDER",
+      enabled: false,
+      key: "O",
+      settings: [
+        { type: "bool", name: "Players", val: true },
+        { type: "bool", name: "Mobs", val: false },
+        { type: "bool", name: "Health Bar", val: true },
+        { type: "bool", name: "Corners", val: true }
+      ]
+    },
+    {
+      id: "tracer",
+      name: "Tracer",
+      desc: "Draw lines to entities",
+      cat: "RENDER",
+      enabled: false,
+      key: "",
+      settings: [
+        { type: "bool", name: "Players", val: true },
+        { type: "bool", name: "Mobs", val: false }
+      ]
+    },
+    {
+      id: "freecam",
+      name: "Freecam",
+      desc: "True Ghost mode (Wurst-style)",
+      cat: "RENDER",
+      enabled: false,
+      key: "U",
+      settings: [
+        { type: "slider", name: "Speed", val: 1.0, min: 0.1, max: 5.0, step: 0.1 }
+      ]
+    },
+    {
+      id: "targethud",
+      name: "TargetHUD",
+      desc: "Shows target info when attacking",
+      cat: "RENDER",
+      enabled: false,
+      key: "",
+      settings: [
+        { type: "slider", name: "Transparency", val: 210, min: 50, max: 255, step: 5 },
+        { type: "bool",   name: "Particles", val: true },
+        { type: "slider", name: "Particle Count", val: 12, min: 4, max: 30, step: 1 }
+      ]
+    },
+
+    {
+      id: "nopush",
+      name: "NoPush",
+      desc: "Anti-push + pearl phase through blocks",
+      cat: "PLAYER",
+      enabled: false,
+      wip: true,
+      key: "",
+      settings: [
+        { type: "bool", name: "Entities", val: true },
+        { type: "bool", name: "Blocks", val: true },
+        { type: "bool", name: "Water", val: true }
+      ]
+    },
+    {
+      id: "invclicker",
+      name: "InvClicker",
+      desc: "Spams clicks while holding LMB (Shift for QuickMove)",
+      cat: "PLAYER",
+      enabled: true,
+      wip: true,
+      key: "",
+      settings: [
+        { type: "slider", name: "Click Delay (ms)", val: 10, min: 0, max: 200, step: 5 }
+      ]
+    },
+
+    {
+      id: "fastplace",
+      name: "FastPlace",
+      desc: "Removes placement delay",
+      cat: "BLOCKS",
+      enabled: true,
+      key: "",
+      settings: [
+        { type: "bool", name: "Only Blocks", val: true }
+      ]
+    },
+    {
+      id: "nobreakdelay",
+      name: "NoBreakDelay",
+      desc: "Removes block breaking delay",
+      cat: "BLOCKS",
+      enabled: false,
+      key: "",
+      settings: []
+    },
+
+    {
+      id: "hud",
+      name: "HUD",
+      desc: "Display client watermark + keybind list",
+      cat: "CLIENT",
+      enabled: true,
+      key: "",
+      settings: [
+        { type: "combo", name: "Theme", val: "Chroma", options: ["Chroma", "Static", "Fade"] },
+        { type: "combo", name: "Outline", val: "None", options: ["None", "Full", "Side"] },
+        { type: "bool",  name: "Show ArrayList", val: true },
+        { type: "bool",  name: "Show Watermark", val: true },
+        { type: "bool",  name: "Show Potions", val: true },
+        { type: "bool",  name: "Show Keybinds", val: true },
+        { type: "bool",  name: "Alphabetical", val: false },
+        { type: "bool",  name: "Background", val: false },
+        { type: "bool",  name: "Lowercase", val: false },
+        { type: "bool",  name: "Show Info", val: true }
+      ]
+    },
+    {
+      id: "selfdestruct",
+      name: "SelfDestruct",
+      desc: "Disables all features",
+      cat: "CLIENT",
+      enabled: false,
+      key: "",
+      settings: []
+    }
+  ];
+
+  let currentCategory = 'COMBAT';
+  let searchQuery = '';
+  const expandedTrees = { "triggerbot": true }; 
+  let activeBindingModule = null;
+
+  function renderModulesList() {
+    const container = document.getElementById('ig-modules');
+    container.innerHTML = '';
+
+    if (currentCategory === 'DEBUG') {
+      renderDebugPanel(container);
+      return;
+    }
+
+    const filter = searchQuery.toLowerCase().trim();
+    const visibleMods = MODULES.filter(m => {
+      if (filter.length > 0) {
+        return m.name.toLowerCase().includes(filter);
+      }
+      return m.cat === currentCategory;
+    });
+
+    if (visibleMods.length === 0) {
+      container.innerHTML = '<div style="color:var(--ig-text-disabled);font-size:12px;padding:12px;font-style:italic;">No modules in this category.</div>';
+      return;
+    }
+
+    visibleMods.forEach(mod => {
+      const row = document.createElement('div');
+      row.className = 'ig-mod-row';
+
+      const head = document.createElement('div');
+      head.className = 'ig-mod-header';
+
+      const checkWrap = document.createElement('div');
+      checkWrap.className = 'ig-check-wrap';
+      
+      const chk = document.createElement('div');
+      chk.className = 'ig-check-box' + (mod.enabled ? ' checked' : '');
+      chk.title = "Toggle module (or right-click to bind)";
+      chk.onclick = (e) => {
+        e.stopPropagation();
+        mod.enabled = !mod.enabled;
+        renderModulesList();
+      };
+
+      const lbl = document.createElement('span');
+      lbl.className = 'ig-mod-label' + (mod.enabled ? '' : ' disabled');
+      lbl.textContent = mod.name;
+      lbl.title = mod.desc;
+      lbl.onclick = (e) => {
+        e.stopPropagation();
+        mod.enabled = !mod.enabled;
+        renderModulesList();
+      };
+
+      checkWrap.oncontextmenu = (e) => {
+        e.preventDefault();
+        openBindModal(mod);
+      };
+      checkWrap.onauxclick = (e) => {
+        if (e.button === 1) { 
+          e.preventDefault();
+          openBindModal(mod);
+        }
+      };
+
+      checkWrap.appendChild(chk);
+      checkWrap.appendChild(lbl);
+      head.appendChild(checkWrap);
+
+      if (mod.wip) {
+        const wipTag = document.createElement('span');
+        wipTag.className = 'ig-wip-badge mono';
+        wipTag.textContent = 'work in progress';
+        head.appendChild(wipTag);
+      }
+
+      if (mod.key) {
+        const bindBadge = document.createElement('span');
+        bindBadge.className = 'ig-bind-badge';
+        bindBadge.textContent = '[' + mod.key + ']';
+        bindBadge.title = 'Keybind: ' + mod.key + ' (Click to change)';
+        bindBadge.onclick = (e) => {
+          e.stopPropagation();
+          openBindModal(mod);
+        };
+        head.appendChild(bindBadge);
+      }
+
+      if (mod.settings && mod.settings.length > 0) {
+        const treeBtn = document.createElement('span');
+        treeBtn.className = 'ig-tree-btn';
+        const isOpen = !!expandedTrees[mod.id];
+        treeBtn.textContent = (isOpen ? '▼ ' : '▶ ') + 'Settings';
+        treeBtn.onclick = (e) => {
+          e.stopPropagation();
+          expandedTrees[mod.id] = !expandedTrees[mod.id];
+          renderModulesList();
+        };
+        head.appendChild(treeBtn);
+      }
+
+      row.appendChild(head);
+
+      if (mod.settings && mod.settings.length > 0 && expandedTrees[mod.id]) {
+        const settingsBox = document.createElement('div');
+        settingsBox.className = 'ig-settings-box';
+
+        mod.settings.forEach(setting => {
+          if (setting.type === 'bool') {
+            const bRow = document.createElement('div');
+            bRow.className = 'ig-check-wrap';
+            
+            const bChk = document.createElement('div');
+            bChk.className = 'ig-check-box' + (setting.val ? ' checked' : '');
+            bChk.style.width = '14px';
+            bChk.style.height = '14px';
+            bChk.onclick = () => {
+              setting.val = !setting.val;
+              renderModulesList();
+            };
+
+            const bLbl = document.createElement('span');
+            bLbl.style.fontSize = '12px';
+            bLbl.style.color = setting.val ? 'var(--ig-text)' : 'var(--ig-text-disabled)';
+            bLbl.textContent = setting.name;
+            bLbl.onclick = () => {
+              setting.val = !setting.val;
+              renderModulesList();
+            };
+
+            bRow.appendChild(bChk);
+            bRow.appendChild(bLbl);
+            settingsBox.appendChild(bRow);
+          }
+          else if (setting.type === 'slider') {
+            const sRow = document.createElement('div');
+            sRow.className = 'ig-slider-container';
+
+            const track = document.createElement('div');
+            track.className = 'ig-slider-track';
+
+            const fill = document.createElement('div');
+            fill.className = 'ig-slider-fill';
+            const pct = Math.max(0, Math.min(100, ((setting.val - setting.min) / (setting.max - setting.min)) * 100));
+            fill.style.width = pct + '%';
+
+            const valText = document.createElement('span');
+            valText.className = 'ig-slider-val';
+            valText.textContent = setting.step < 1 ? Number(setting.val).toFixed(1) : Math.round(setting.val);
+
+            track.appendChild(fill);
+            track.appendChild(valText);
+
+            const updateSlider = (e) => {
+              const rect = track.getBoundingClientRect();
+              const pos = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
+              const ratio = pos / rect.width;
+              let rawVal = setting.min + ratio * (setting.max - setting.min);
+              if (setting.step) {
+                rawVal = Math.round(rawVal / setting.step) * setting.step;
+              }
+              setting.val = Math.max(setting.min, Math.min(setting.max, rawVal));
+              const newPct = ((setting.val - setting.min) / (setting.max - setting.min)) * 100;
+              fill.style.width = newPct + '%';
+              valText.textContent = setting.step < 1 ? Number(setting.val).toFixed(1) : Math.round(setting.val);
+            };
+
+            track.onmousedown = (e) => {
+              updateSlider(e);
+              const onMove = (ev) => updateSlider(ev);
+              const onUp = () => {
+                document.removeEventListener('mousemove', onMove);
+                document.removeEventListener('mouseup', onUp);
+              };
+              document.addEventListener('mousemove', onMove);
+              document.addEventListener('mouseup', onUp);
+            };
+
+            const sName = document.createElement('span');
+            sName.className = 'ig-slider-name';
+            sName.textContent = setting.name;
+
+            sRow.appendChild(track);
+            sRow.appendChild(sName);
+            settingsBox.appendChild(sRow);
+          }
+          else if (setting.type === 'combo') {
+            const cRow = document.createElement('div');
+            cRow.className = 'ig-combo-container';
+
+            const sel = document.createElement('select');
+            sel.className = 'ig-select';
+            setting.options.forEach(opt => {
+              const op = document.createElement('option');
+              op.value = opt;
+              op.textContent = opt;
+              if (opt === setting.val) op.selected = true;
+              sel.appendChild(op);
+            });
+            sel.onchange = (e) => {
+              setting.val = e.target.value;
+            };
+
+            const cName = document.createElement('span');
+            cName.className = 'ig-combo-name';
+            cName.textContent = setting.name;
+
+            cRow.appendChild(sel);
+            cRow.appendChild(cName);
+            settingsBox.appendChild(cRow);
+          }
+        });
+
+        row.appendChild(settingsBox);
+      }
+
+      container.appendChild(row);
+    });
+  }
+
+  function renderDebugPanel(container) {
+    const debugWrap = document.createElement('div');
+    debugWrap.className = 'ig-debug-panel';
+
+    const header = document.createElement('div');
+    header.className = 'ig-debug-heading';
+    header.textContent = 'System Logs & Errors';
+    debugWrap.appendChild(header);
+
+    const btnRow = document.createElement('div');
+    btnRow.style.display = 'flex';
+    btnRow.style.gap = '8px';
+
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'ig-btn';
+    copyBtn.textContent = 'Copy All Logs';
+    copyBtn.onclick = () => {
+      navigator.clipboard?.writeText(logs.map(l => l.text).join('\n'));
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = 'Copy All Logs'; }, 1500);
+    };
+
+    const clearBtn = document.createElement('button');
+    clearBtn.className = 'ig-btn';
+    clearBtn.style.background = '#404050';
+    clearBtn.textContent = 'Clear Logs';
+    clearBtn.onclick = () => {
+      logBox.innerHTML = '<div class="log-info">[INFO] Logs cleared.</div>';
+    };
+
+    btnRow.appendChild(copyBtn);
+    btnRow.appendChild(clearBtn);
+    debugWrap.appendChild(btnRow);
+
+    const logBox = document.createElement('div');
+    logBox.className = 'ig-log-box';
+
+    const logs = [
+      { cls: 'log-ok',   text: '[INFO]  ImGuiLoader initialized successfully' },
+      { cls: 'log-ok',   text: '[INFO]  AuthScreen passed HWID check' },
+      { cls: 'log-ok',   text: '[INFO]  ModuleManager registered 18 modules' },
+      { cls: 'log-info', text: '[INFO]  ClickGUI opened (RSHIFT)' },
+      { cls: 'log-ok',   text: '[INFO]  TriggerBot active on target' },
+      { cls: 'log-ok',   text: '[INFO]  Packet hook active (ChannelDuplexHandler)' },
+      { cls: 'log-dbg',  text: '[DEBUG] ReflectionHelper initialized cleanly' },
+      { cls: 'log-ok',   text: '[INFO]  AntiCheat bypass integrity: 100%' }
+    ];
+
+    logs.forEach(item => {
+      const line = document.createElement('div');
+      line.className = item.cls;
+      line.textContent = item.text;
+      logBox.appendChild(line);
+    });
+
+    debugWrap.appendChild(logBox);
+    container.appendChild(debugWrap);
+  }
+
+  function selectCat(el) {
+    document.querySelectorAll('#ig-categories .ig-cat-item, #ig-categories .ig-cat-debug').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    currentCategory = el.dataset.cat;
+    document.getElementById('ig-search').value = '';
+    searchQuery = '';
+    renderModulesList();
+  }
+
+  function filterModules(val) {
+    searchQuery = val;
+    renderModulesList();
+  }
+
+  function repairUIFeedback(btn) {
+    btn.textContent = 'Resetting...';
+    setTimeout(() => {
+      btn.textContent = 'UI Reset OK';
+      setTimeout(() => { btn.textContent = 'Repair UI'; }, 1500);
+    }, 400);
+  }
+
+  function openBindModal(mod) {
+    activeBindingModule = mod;
+    const modal = document.getElementById('ig-bind-modal');
+    document.getElementById('ig-bind-title').textContent = 'Press any key to bind ' + mod.name + '...';
+    modal.classList.add('show');
+  }
+
+  function closeBindModal() {
+    activeBindingModule = null;
+    document.getElementById('ig-bind-modal').classList.remove('show');
+  }
+
+  function unbindActiveModule() {
+    if (activeBindingModule) {
+      activeBindingModule.key = '';
+      renderModulesList();
+    }
+    closeBindModal();
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (activeBindingModule) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.key === 'Escape') {
+        closeBindModal();
+      } else {
+        activeBindingModule.key = e.key.length === 1 ? e.key.toUpperCase() : e.key;
+        renderModulesList();
+        closeBindModal();
+      }
+      return;
+    }
+
+    if (e.key === 'Escape') {
+      closeGuiPreview();
+    }
+  });
+
+  function openGuiPreview() {
+    renderModulesList();
+    const overlay = document.getElementById('gui-overlay');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    initDraggable();
+  }
+
+  function closeGuiPreview() {
+    const overlay = document.getElementById('gui-overlay');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    closeBindModal();
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('gui-overlay')) {
+      closeGuiPreview();
+    }
+  }
+
+  function initDraggable() {
+    const win = document.getElementById('imgui-window');
+    const titleBar = document.getElementById('imgui-titlebar');
+    let isDragging = false;
+    let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
+
+    titleBar.onmousedown = (e) => {
+      if (e.target === document.getElementById('imgui-close')) return;
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      const rect = win.getBoundingClientRect();
+      initialLeft = rect.left;
+      initialTop = rect.top;
+      win.style.position = 'fixed';
+      win.style.margin = '0';
+      win.style.left = initialLeft + 'px';
+      win.style.top = initialTop + 'px';
+      e.preventDefault();
+    };
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      win.style.left = (initialLeft + e.clientX - startX) + 'px';
+      win.style.top = (initialTop + e.clientY - startY) + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+  }
   </script>
 
 </body>
