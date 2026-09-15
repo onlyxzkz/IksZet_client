@@ -7,8 +7,10 @@
   <link rel="icon" type="image/png" href="./IksZetclient_logo.png">
   <meta name="description" content="Screenshare Proof .dll minecraft client" />
 
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
@@ -27,8 +29,17 @@
       --radius: 12px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; background-color: var(--bg); }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      background-color: var(--bg);
+    }
 
     body {
       font-family: 'Space Grotesk', sans-serif;
@@ -38,8 +49,13 @@
       overflow-x: hidden;
     }
 
+    /* Background Grid FX */
     .bg-grid {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                         linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
       background-size: 40px 40px;
@@ -47,6 +63,7 @@
       pointer-events: none;
     }
 
+    /* Scroll Animation Styles */
     .scroll-scale-up {
       transform: scale(0.85);
       opacity: 0;
@@ -67,9 +84,18 @@
       opacity: 1;
     }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
-    .mono { font-family: 'JetBrains Mono', monospace; }
+    /* Layout Utility Classes */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
 
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Card Component */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -83,97 +109,316 @@
       transform: translateY(-4px);
     }
 
+    /* Buttons */
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem;
-      padding: 0.9rem 2rem; border-radius: 8px; font-weight: 700;
-      text-decoration: none; cursor: pointer; transition: all 0.2s ease;
-      font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     .btn-solid {
-      background: #ffffff; color: #000000; border: 1px solid #ffffff;
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #ffffff;
     }
     .btn-solid:hover {
-      background: #e4e4e7; border-color: #e4e4e7; transform: translateY(-2px);
+      background: #e4e4e7;
+      border-color: #e4e4e7;
+      transform: translateY(-2px);
     }
     .btn-outline {
-      background: transparent; color: #ffffff; border: 1px solid var(--border-bright);
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid var(--border-bright);
     }
     .btn-outline:hover {
-      background: #ffffff; color: #000000; border-color: #ffffff;
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
     }
 
+    /* Header & Navigation */
     header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 1.25rem 0;
     }
-    .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; text-decoration: none; color: #fff; }
-    nav { display: flex; gap: 2.5rem; }
-    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.2s; text-transform: uppercase; letter-spacing: 1px; }
-    nav a:hover { color: #ffffff; }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-decoration: none;
+      color: #fff;
+    }
+    nav {
+      display: flex;
+      gap: 2.5rem;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    nav a:hover {
+      color: #ffffff;
+    }
 
+    /* Hero Section */
     .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      justify-content: center; align-items: center; text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       padding-top: 6rem;
     }
     .tag {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.35rem 1rem; border-radius: 4px; background: #121215;
-      border: 1px solid var(--border-bright); color: var(--text-muted);
-      font-size: 0.8rem; margin-bottom: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 4px;
+      background: #121215;
+      border: 1px solid var(--border-bright);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-bottom: 2rem;
     }
-    .hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -1px; margin-bottom: 1.5rem; }
-    .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 650px; margin-bottom: 2.5rem; }
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin-bottom: 2.5rem;
+    }
 
     .preview-box {
-      width: 100%; max-width: 950px; border-radius: var(--radius);
-      border: 1px solid var(--border-bright); overflow: hidden; margin-top: 3rem;
+      width: 100%;
+      max-width: 950px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-bright);
+      overflow: hidden;
+      margin-top: 3rem;
       background: #000;
       position: relative;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .preview-box img { width: 100%; display: block; filter: grayscale(20%) contrast(110%); }
+    .preview-box img {
+      width: 100%;
+      display: block;
+      filter: grayscale(20%) contrast(110%);
+    }
 
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; }
-    .stat-card { text-align: center; padding: 2rem; }
-    .stat-num { font-size: 2.5rem; font-weight: 700; color: #fff; }
-    .stat-lbl { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
+    /* Statistics Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .stat-card {
+      text-align: center;
+      padding: 2rem;
+    }
+    .stat-num {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .stat-lbl {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
 
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    /* Feature Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
     .feature-icon {
-      width: 48px; height: 48px; border-radius: 8px; background: #18181b;
-      border: 1px solid var(--border-bright); display: flex; align-items: center;
-      justify-content: center; font-size: 1.25rem; color: #ffffff; margin-bottom: 1.5rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: #18181b;
+      border: 1px solid var(--border-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
     }
 
-    .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+    /* Modules Grid */
+    .mod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
     .mod-card {
-      background: var(--card-bg); border: 1px solid var(--border); padding: 1.5rem;
-      border-radius: var(--radius); transition: all 0.2s ease;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      transition: all 0.2s ease;
     }
-    .mod-card:hover { border-color: #ffffff; transform: translateY(-2px); }
-    .mod-cat { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .mod-card:hover {
+      border-color: #ffffff;
+      transform: translateY(-2px);
+    }
+    .mod-cat {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
 
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; }
-    .price-card { text-align: center; }
-    .price-card.highlight { border-color: #ffffff; background: #0e0e11; }
-    .price-amount { font-size: 3.5rem; font-weight: 700; margin: 1.5rem 0; color: #fff; }
-    .price-amount span { font-size: 1.2rem; color: var(--text-muted); }
-    .price-features { list-style: none; margin: 2rem 0; text-align: left; }
-    .price-features li { padding: 0.75rem 0; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 0.95rem; }
-    .price-features i { color: #ffffff; margin-right: 0.75rem; }
+    /* Pricing Section */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .price-card {
+      text-align: center;
+    }
+    .price-card.highlight {
+      border-color: #ffffff;
+      background: #0e0e11;
+    }
+    .price-amount {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 1.5rem 0;
+      color: #fff;
+    }
+    .price-amount span {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+    .price-features {
+      list-style: none;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    .price-features li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .price-features i {
+      color: #ffffff;
+      margin-right: 0.75rem;
+    }
 
-    .faq-list { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    /* FAQ Section */
+    .faq-list {
+      max-width: 850px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .faq-item:hover {
+      border-color: var(--border-bright);
+    }
+    .faq-question {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+      user-select: none;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      padding: 0 2rem;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 0 2rem 1.5rem 2rem;
+      transition: max-height 0.3s cubic-bezier(1, 0, 1, 0), padding 0.3s ease;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+      color: var(--text-muted);
+    }
 
+    /* Call-To-Action Container */
     .cta-box {
-      text-align: center; padding: 5rem 2rem; background: var(--card-bg);
-      border: 1px solid var(--border-bright); border-radius: var(--radius); margin-bottom: 4rem;
+      text-align: center;
+      padding: 5rem 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius);
+      margin-bottom: 4rem;
     }
 
-    footer { text-align: center; padding: 4rem 2rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
 
     @media (max-width: 768px) {
       nav { display: none; }
@@ -183,8 +428,10 @@
 </head>
 <body>
 
+  <!-- Background Grid Canvas -->
   <div class="bg-grid"></div>
 
+  <!-- Header Navigation -->
   <header>
     <div class="nav-inner">
       <a href="#" class="logo mono">IKSZET</a>
@@ -198,6 +445,7 @@
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="container hero">
     <div class="scroll-scale-down">
       <div class="tag mono"><i class="fa-solid fa-code"></i> MINECRAFT 1.21.4 — FABRIC</div>
@@ -214,10 +462,11 @@
     </div>
   </section>
 
-  <div class="container">
+  <!-- Stats Grid -->
+  <div class="container" style="padding-top: 0;">
     <div class="stats-grid">
       <div class="card stat-card scroll-scale-up">
-        <div class="stat-num mono">18+</div>
+        <div class="stat-num mono">19+</div>
         <div class="stat-lbl">Modules</div>
       </div>
       <div class="card stat-card scroll-scale-up" style="transition-delay: 0.1s;">
@@ -235,6 +484,7 @@
     </div>
   </div>
 
+  <!-- Features Section -->
   <section id="features" class="container">
     <div style="text-align: center; margin-bottom: 4rem;" class="scroll-scale-down">
       <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">HARDENED ARCHITECTURE</h2>
@@ -271,9 +521,16 @@
         <h3 style="margin-bottom: 0.75rem;">Direct Support</h3>
         <p style="color: var(--text-muted); font-size: 0.95rem;">Fast support via our private Discord server for setup assistance, updates, and custom configs.</p>
       </div>
+
+      <div class="card scroll-scale-up" style="transition-delay: 0.3s;">
+        <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+        <h3 style="margin-bottom: 0.75rem;">Zero Latency</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Direct C++ execution hooks bypass JVM overhead, ensuring zero input lag or frame drops.</p>
+      </div>
     </div>
   </section>
 
+  <!-- Modules Section -->
   <section id="modules" class="container">
     <div style="text-align: center; margin-bottom: 4rem;" class="scroll-scale-down">
       <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">MODULE SUITE</h2>
@@ -355,6 +612,7 @@
     </div>
   </section>
 
+  <!-- Pricing Section -->
   <section id="pricing" class="container">
     <div style="text-align: center; margin-bottom: 4rem;" class="scroll-scale-down">
       <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">ACCESS TIERS</h2>
@@ -366,7 +624,7 @@
         <h3 style="color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px;" class="mono">3 MONTHS</h3>
         <div class="price-amount mono">40 <span>PLN</span></div>
         <ul class="price-features">
-          <li><i class="fa-solid fa-check"></i> Complete 18+ Module Suite</li>
+          <li><i class="fa-solid fa-check"></i> Complete 19+ Module Suite</li>
           <li><i class="fa-solid fa-check"></i> Standard Discord Support</li>
           <li><i class="fa-solid fa-check"></i> Active Software Updates</li>
           <li><i class="fa-solid fa-check"></i> HWID License Locking</li>
@@ -379,7 +637,7 @@
         <h3 style="color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px; margin-top: 0.5rem;" class="mono">12 MONTHS</h3>
         <div class="price-amount mono">90 <span>PLN</span></div>
         <ul class="price-features">
-          <li><i class="fa-solid fa-check"></i> Complete 18+ Module Suite</li>
+          <li><i class="fa-solid fa-check"></i> Complete 19+ Module Suite</li>
           <li><i class="fa-solid fa-check"></i> Priority Support</li>
           <li><i class="fa-solid fa-check"></i> Active Software Updates</li>
           <li><i class="fa-solid fa-check"></i> HWID License Locking</li>
@@ -389,9 +647,97 @@
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section id="faq" class="container">
+    <div style="text-align: center; margin-bottom: 4rem;" class="scroll-scale-down">
+      <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">FREQUENTLY ASKED QUESTIONS</h2>
+      <p style="color: var(--text-muted);">Got questions? We've got answers.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item scroll-scale-up">
+        <div class="faq-question">
+          <span>How does injection work?</span>
+          <i class="fa-solid fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          The client operates as a native C++ DLL loaded directly into the Java Virtual Machine process running Minecraft. It does not modify game files on disk or create temporary launcher profiles.
+        </div>
+      </div>
+
+      <div class="faq-item scroll-scale-up" style="transition-delay: 0.1s;">
+        <div class="faq-question">
+          <span>Is IksZet safe during manual staff screenshares?</span>
+          <i class="fa-solid fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          Yes. Executing the SelfDestruct command completely detaches the DLL, cleans native hooks, clears classloader traces, and leaves zero residual files on your disk or memory.
+        </div>
+      </div>
+
+      <div class="faq-item scroll-scale-up" style="transition-delay: 0.2s;">
+        <div class="faq-question">
+          <span>What Minecraft version and loader is supported?</span>
+          <i class="fa-solid fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          IksZet is tailored specifically for Minecraft 1.21.4 running on the Fabric mod loader.
+        </div>
+      </div>
+
+      <div class="faq-item scroll-scale-up" style="transition-delay: 0.3s;">
+        <div class="faq-question">
+          <span>How do I purchase access?</span>
+          <i class="fa-solid fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          Join our official Discord server and open a ticket. Payment instructions and instant key delivery are managed securely through our automated system.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <div class="container">
+    <div class="cta-box scroll-scale-up">
+      <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">READY TO ELEVATE YOUR GAMEPLAY?</h2>
+      <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 2rem auto;">Join our Discord community to get instant access and start dominating today.</p>
+      <a href="https://discord.gg/J8xrskPCud" target="_blank" class="btn btn-solid"><i class="fa-brands fa-discord"></i> Join Discord Server</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <footer>
     <p>&copy; IksZet Client. All rights reserved.</p>
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    // FAQ Accordion Toggle Script
+    document.querySelectorAll('.faq-question').forEach(item => {
+      item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+
+    // Scroll Reveal Observer Script
+    const observerOptions = {
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-scale-up, .scroll-scale-down').forEach((el) => {
+      observer.observe(el);
+    });
+  </script>
 
 </body>
 </html>
