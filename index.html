@@ -255,7 +255,7 @@
       padding: 2rem;
     }
     .stat-num {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: #fff;
     }
@@ -448,7 +448,7 @@
   <!-- Hero Section -->
   <section class="container hero">
     <div class="scroll-scale-down">
-      <div class="tag mono"><i class="fa-solid fa-code"></i> MINECRAFT 1.21.4 — FABRIC</div>
+      <div class="tag mono"><i class="fa-solid fa-code"></i> MINECRAFT 1.21.4/1.21.11 — FABRIC</div>
       <h1>.DLL Injection.<br>ZERO TRACES.</h1>
       <p>IksZet is a high-performance C++ client featuring hard self-destruction and surgical combat modules.</p>
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
@@ -470,7 +470,7 @@
         <div class="stat-lbl">Modules</div>
       </div>
       <div class="card stat-card scroll-scale-up" style="transition-delay: 0.1s;">
-        <div class="stat-num mono">1.21.4</div>
+        <div class="stat-num mono" style="font-size: 1.8rem;">1.21.4/1.21.11</div>
         <div class="stat-lbl">Version</div>
       </div>
       <div class="card stat-card scroll-scale-up" style="transition-delay: 0.2s;">
@@ -546,20 +546,26 @@
 
       <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Combat</div>
-        <h4 style="margin-bottom: 0.3rem;">AimAssist</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Smooth yaw/pitch rotation assistance with dynamic easing, FOV distance threshold, and target filtering.</p>
+        <h4 style="margin-bottom: 0.3rem;">Kill Aura</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Automatically attacks valid entities within customizable range with intelligent rotation and hit-timing algorithms.</p>
       </div>
 
       <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Combat</div>
-        <h4 style="margin-bottom: 0.3rem;">Backtrack</h4>
+        <h4 style="margin-bottom: 0.3rem;">BackTrack</h4>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Inbound movement packet lag buffer with real-time 3D ghost box visualization.</p>
       </div>
 
       <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Combat</div>
-        <h4 style="margin-bottom: 0.3rem;">FakeLag</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Cancels sending movement packets dynamically to simulate network lag and delay player position updates.</p>
+        <h4 style="margin-bottom: 0.3rem;">ServerDelay</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Manipulates outbound packet queues to simulate selective server latency and optimize combat registration.</p>
+      </div>
+
+      <div class="mod-card scroll-scale-up">
+        <div class="mod-cat mono">Movement</div>
+        <h4 style="margin-bottom: 0.3rem;">BowBoost</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Automatically leverages self-arrow impact impulses to maximize horizontal velocity and leap distance.</p>
       </div>
 
       <div class="mod-card scroll-scale-up">
@@ -593,18 +599,6 @@
       </div>
 
       <div class="mod-card scroll-scale-up">
-        <div class="mod-cat mono">Player</div>
-        <h4 style="margin-bottom: 0.3rem;">NoPush</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Prevents entity & water pushing collisions while enabling pearl phasing through solid blocks.</p>
-      </div>
-
-      <div class="mod-card scroll-scale-up">
-        <div class="mod-cat mono">Player</div>
-        <h4 style="margin-bottom: 0.3rem;">InvClicker</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">High-speed UI-level container item spam clicker with instant Shift quick-move support.</p>
-      </div>
-
-      <div class="mod-card scroll-scale-up">
         <div class="mod-cat mono">Client</div>
         <h4 style="margin-bottom: 0.3rem;">SelfDestruct</h4>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Instantly wipes native memory, unhooks packet handlers, purges class loaders, and deletes JVM traces.</p>
@@ -624,7 +618,7 @@
         <h3 style="color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px;" class="mono">3 MONTHS</h3>
         <div class="price-amount mono">40 <span>PLN</span></div>
         <ul class="price-features">
-          <li><i class="fa-solid fa-check"></i> Complete 19+ Module Suite</li>
+          <li><i class="fa-solid fa-check"></i> Complete Module Suite</li>
           <li><i class="fa-solid fa-check"></i> Standard Discord Support</li>
           <li><i class="fa-solid fa-check"></i> Active Software Updates</li>
           <li><i class="fa-solid fa-check"></i> HWID License Locking</li>
@@ -637,7 +631,7 @@
         <h3 style="color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px; margin-top: 0.5rem;" class="mono">12 MONTHS</h3>
         <div class="price-amount mono">90 <span>PLN</span></div>
         <ul class="price-features">
-          <li><i class="fa-solid fa-check"></i> Complete 19+ Module Suite</li>
+          <li><i class="fa-solid fa-check"></i> Complete Module Suite</li>
           <li><i class="fa-solid fa-check"></i> Priority Support</li>
           <li><i class="fa-solid fa-check"></i> Active Software Updates</li>
           <li><i class="fa-solid fa-check"></i> HWID License Locking</li>
@@ -681,7 +675,7 @@
           <i class="fa-solid fa-chevron-down faq-icon"></i>
         </div>
         <div class="faq-answer">
-          IksZet is tailored specifically for Minecraft 1.21.4 running on the Fabric mod loader.
+          IksZet is tailored specifically for Minecraft 1.21.4/1.21.11 running on the Fabric mod loader.
         </div>
       </div>
 
